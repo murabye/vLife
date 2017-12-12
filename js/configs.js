@@ -1,0 +1,1 @@
+var vLifeAccessKey = '059zZmWOYJU0bLf7RrjnLMPbfCYf3uve5KYGs8o3jWxYE1bBQoz5ZKKVafsn';

@@ -8,6 +8,7 @@
 
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/googleMap.css">
 </head>
 <body style="padding-top: 50px">
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
@@ -32,15 +33,6 @@
     </div>
 </nav>
 
-
-<!-- дата начала и конца, календарь Bootstap,
-     https://webformyself.com/kalendar-dlya-polya-input-formy/ -->
-<!-- конец повтора - день, когда перестанет повторяться, можно не заполнять -->
-<!-- активно, не ставить форму -->
-<!-- добавить приглашения - номер, телефон, мыло, + форма -->
-<!-- карта,
-     https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder?hl=ru -->
-
 <div class="container">
     <h1>New event</h1>
     <form class="form-horizontal">
@@ -49,6 +41,19 @@
             <label for="formName" class="col-sm-1 control-label">Name</label>
             <div class="col-sm-10">
                 <input type="text" maxlength="25" size="35" class="form-control" id="formName" placeholder="25 sym max">
+            </div>
+        </div>
+
+        <!-- сфера -->
+        <div class="form-group">
+            <label class="col-sm-1 control-label">Sphere</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="formSphere" id="personal" value="0" checked> personal
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="formSphere" id="work" value="1"> work
+                </label>
             </div>
         </div>
 
@@ -88,16 +93,27 @@
             </div>
         </div>
 
-        <!-- сфера -->
+        <!-- конец повтора -->
         <div class="form-group">
-            <label class="col-sm-1 control-label">Sphere</label>
+            <label for="dateRepeatEnd" class="col-sm-1 control-label">Repeat until</label>
             <div class="col-sm-10">
-                <label class="radio-inline">
-                    <input type="radio" name="formSphere" id="personal" value="0" checked> personal
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="formSphere" id="work" value="1"> work
-                </label>
+                <input type="text" size="35" class="form-control" id="dateRepeatEnd" placeholder="Repeat until...">
+            </div>
+        </div>
+
+        <!-- карта -->
+        <div class="form-group" style="height: 500px;">
+            <label class="col-sm-1 control-label">Place</label>
+            <div class="col-sm-10" style="height: 100%;">
+
+                <input id="pac-input" class="controls" type="text"
+                        placeholder="Enter a location">
+                <div id="map"></div>
+                <div id="infowindow-content">
+                    <span id="place-name"  class="title"></span><br>
+                    Place ID <span id="place-id"></span><br>
+                    <span id="place-address"></span>
+                </div>
             </div>
         </div>
 
@@ -108,6 +124,24 @@
                 <textarea class="form-control" id="formDescription"
                           placeholder="Description..."
                           rows="4" cols="100"></textarea>
+            </div>
+        </div>
+
+        <!-- Активно -->
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" checked> Active
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Пригласить, кнопка -->
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button class="btn btn-info" onsubmit="return false">Invite Friend</button>
             </div>
         </div>
 
@@ -122,6 +156,7 @@
 
 </div>
 
+<script src="js/configs.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- BOOTSTRAP -->
@@ -137,6 +172,9 @@
 <script src="js/moment.js"></script>
 <script src="js/daterangepicker.js"></script>
 <script src="js/events.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChSqhPIvz5qBzziGXvlKF1jpMHhyMTqF4&libraries=places&callback=initMap"
+            async defer></script>
+
 
 </body>
 </html>
