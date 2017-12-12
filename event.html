@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API</title>
+
+    <!-- BOOTSTRAP-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="padding-top: 50px">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">MURABYE</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Sign up</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li class="active"><a href="event.html">Event</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- дата начала и конца, календарь Bootstap,
+     https://webformyself.com/kalendar-dlya-polya-input-formy/ -->
+<!-- конец повтора - день, когда перестанет повторяться, можно не заполнять -->
+<!-- активно, не ставить форму -->
+<!-- добавить приглашения - номер, телефон, мыло, + форма -->
+<!-- карта,
+     https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder?hl=ru -->
+
+<div class="container">
+    <h1>New event</h1>
+    <form class="form-horizontal">
+        <!-- имя -->
+        <div class="form-group">
+            <label for="formName" class="col-sm-1 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" maxlength="25" size="35" class="form-control" id="formName" placeholder="25 sym max">
+            </div>
+        </div>
+
+        <!-- даты -->
+        <div class="form-group">
+            <label for="dateStartEnd" class="col-sm-1 control-label">Start, end</label>
+            <div class="col-sm-10">
+                <input type="text" size="35" class="form-control" id="dateStartEnd" placeholder="dates...">
+            </div>
+        </div>
+
+        <!-- повтор -->
+        <div class="form-group">
+            <label class="col-sm-1 control-label">Repeat</label>
+            <div class="col-sm-10">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekMon" value="1"> monday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekTue" value="2"> tuesday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekWed" value="3"> wednesday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekThu" value="4"> thursday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekFri" value="5"> friday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekSat" value="6"> saturday
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="dayInWeekSun" value="7"> sunday
+                </label>
+            </div>
+        </div>
+
+        <!-- сфера -->
+        <div class="form-group">
+            <label class="col-sm-1 control-label">Sphere</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="formSphere" id="personal" value="0" checked> personal
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="formSphere" id="work" value="1"> work
+                </label>
+            </div>
+        </div>
+
+        <!-- описание -->
+        <div class="form-group">
+            <label for="formDescription" class="col-sm-1 control-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="formDescription"
+                          placeholder="Description..."
+                          rows="4" cols="100"></textarea>
+            </div>
+        </div>
+
+        <!-- Success -->
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="js/bootstrap.min.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="js/bootstrapSearch.js"></script>
+<link rel="stylesheet" href="css/daterangepicker.css">
+<script src="js/moment.js"></script>
+<script src="js/daterangepicker.js"></script>
+<script src="js/events.js"></script>
+
+</body>
+</html>
