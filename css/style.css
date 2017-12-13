@@ -5795,53 +5795,14 @@ button.close {
   .hidden-print {
     display: none !important; } }
 body {
-  paddint-top: 50px;
+  padding-top: 50px;
   height: 100%; }
 
 html {
   height: 100%; }
 
-.application {
-  background-color: #fff;
-  min-height: 91%; }
-
-.tools {
-  width: 100%;
-  height: 50px;
-  padding: 7px 1%;
-  font-size: 24px;
-  border: solid #333333;
-  border-width: 0 0 1px 0;
-  background-color: #eeeeee; }
-
-.navbar-left {
-  margin-left: 5px;
-  margin-top: -3px; }
-
-.navbar-form.navbar-left {
-  margin-left: 0;
-  margin-top: 8px; }
-
-.btn-toolbar {
-  float: left !important; }
-
-.canvas-container {
-  position: relative;
-  width: 400px;
-  height: 350px;
-  padding: 3px;
-  text-align: right;
-  background-color: #eeeeee;
-  border: 1px solid #333333;
-  border-radius: 3px; }
-
-canvas {
-  width: 390px;
-  height: 318px;
-  top: 26px;
-  left: 4px;
-  position: absolute;
-  border: 1px solid #333333;
-  background-color: #fff; }
+.formInvite {
+  display: inline;
+  margin: 5px 5px 5px 0; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,27 +1,5 @@
-
-/*
- * документация: http://vlife.lastshelter.net:1337/docs/
- *
- * название, макс длина 25
- * личное 0, служебное 1
- * дата начала
- * дата конца
- * репеат опшн - битовая маска,
- *      1 - Monday,
- *      2 - Tuesday,
- *      4 - Wednesday,
- *      8 - Thursday,
- *      16 - Friday,
- *      32 - Saturday,
- *      64 - Sunday.
- * конец повтора
- * описание
- * напоминание - напомнить до, напомнить за
- * место - объект с гуглПлейсАйди и адресом
- * активно - активно ли сейчас
- * приглашашки, номера юзеров, телефоны, мыла
- * AIzaSyChSqhPIvz5qBzziGXvlKF1jpMHhyMTqF4 - API_Key
- */
+//документация: http://vlife.lastshelter.net:1337/docs/
+// файл ТЕСНО связан со страницей.
 
 // для календаря
 $(function(){
@@ -40,18 +18,7 @@ $(function(){
     });
 });
 
-
 // google Place
-
-// This sample uses the Place Autocomplete widget to allow the user to search
-// for and select a place. The sample then displays an info window containing
-// the place ID and other information about the place that the user has
-// selected.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},
@@ -102,3 +69,15 @@ function initMap() {
         infowindow.open(map, marker);
     });
 }
+
+var inviteButton = document.querySelector('#invite');
+inviteButton.onclick = function () {
+    var newElem = document.createElement('div');
+    newElem.innerHTML =
+        '<input type="text" class="form-control formInvite" placeholder="Number of user">' +
+        '<input type="text" class="form-control formInvite" placeholder="Phone">'  +
+        '<input type="text" class="form-control formInvite" placeholder="Email">' ;
+    inviteButton.parentNode.appendChild(newElem);
+
+    return false;       // false submit
+};
