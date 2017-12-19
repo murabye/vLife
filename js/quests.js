@@ -12,6 +12,11 @@ formPhone.onsubmit = function () {
     xhr.setRequestHeader('vlife-access-key', vLifeAccessKey);
 
     xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+
         alert( 'Успех!' );
     };
 
@@ -36,6 +41,11 @@ formReg.onsubmit = function () {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+
         var securityKey = JSON.parse(xhr.responseText);
         securityKey = securityKey.data;
         securityKey = securityKey.security_key;
@@ -59,16 +69,19 @@ formReg.onsubmit = function () {
             alert(xhr.statusText + ": "+ xhr.responseText);
         };
         xhr2.onload = function () {
+            if (xhr2.status != 200) {
+                alert(xhr.statusText + ": "+ xhr.responseText);
+                return;
+            }
             alert(xhr2.responseText);
 
             var token = JSON.parse(xhr2.responseText);
-            token = token.token.value;
-            localStorage.setItem('token', JSON.stringify(token));
+            token = token.data.token.value;
+            localStorage.setItem('token', token);
         };
 
         xhr2.send(JSON.stringify(body));
     };
-
     xhr.onerror = function() {
         alert(xhr.statusText + ": "+ xhr.responseText);
     };

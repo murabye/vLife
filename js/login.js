@@ -14,12 +14,17 @@ formInput.onsubmit = function () {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+
         var token = xhr.responseText;
         alert(token);
 
         token = JSON.parse(token);
         token = token.data.token.value;
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('token', token);
     };
 
     xhr.onerror = function() {

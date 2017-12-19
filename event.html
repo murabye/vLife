@@ -34,8 +34,10 @@
 </nav>
 
 <div class="container">
-    <h1>New event</h1>
-    <form class="form-horizontal">
+
+    <a href="" class="spoiler_links"> <h1>New event</h1></a>
+    <div class="spoiler_body">
+        <form class="form-horizontal">
         <!-- имя -->
         <div class="form-group">
             <label for="formName" class="col-sm-1 control-label">Name</label>
@@ -61,7 +63,33 @@
         <div class="form-group">
             <label for="dateStartEnd" class="col-sm-1 control-label">Start, end</label>
             <div class="col-sm-10">
-                <input type="text" size="35" class="form-control" id="dateStartEnd" placeholder="dates...">
+                <input type="text" size="50" class="form-control" id="dateStartEnd" placeholder="dates...">
+            </div>
+        </div>
+
+        <!-- повтор опции -->
+        <div class="form-group">
+            <label class="col-sm-1 control-label">Repeat</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="repRadio" value="1"> never
+                </label>
+
+                <label class="radio-inline">
+                    <input type="radio" name="repRadio" value="2"> day
+                </label>
+
+                <label class="radio-inline">
+                    <input type="radio" name="repRadio" value="3"> week
+                </label>
+
+                <label class="radio-inline">
+                    <input type="radio" name="repRadio" value="4"> fortnight
+                </label>
+
+                <label class="radio-inline">
+                    <input type="radio" name="repRadio" value="1"> month
+                </label>
             </div>
         </div>
 
@@ -70,25 +98,25 @@
             <label class="col-sm-1 control-label">Repeat</label>
             <div class="col-sm-10">
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekMon" value="1"> monday
+                    <input type="checkbox" name="formRepeatOpt" value="1"> monday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekTue" value="2"> tuesday
+                    <input type="checkbox" name="formRepeatOpt" value="2"> tuesday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekWed" value="3"> wednesday
+                    <input type="checkbox" name="formRepeatOpt" value="3"> wednesday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekThu" value="4"> thursday
+                    <input type="checkbox" name="formRepeatOpt" value="4"> thursday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekFri" value="5"> friday
+                    <input type="checkbox" name="formRepeatOpt" value="5"> friday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekSat" value="6"> saturday
+                    <input type="checkbox" name="formRepeatOpt" value="6"> saturday
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="dayInWeekSun" value="7"> sunday
+                    <input type="checkbox" name="formRepeatOpt" value="7"> sunday
                 </label>
             </div>
         </div>
@@ -127,12 +155,20 @@
             </div>
         </div>
 
+        <!-- повторить за -->
+        <div class="form-group">
+            <label for="formName" class="col-sm-1 control-label">Reminds</label>
+            <div class="col-sm-10">
+                <input type="text" size="35" class="form-control" id="reminds" placeholder="integer">
+            </div>
+        </div>
+
         <!-- Активно -->
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" checked> Active
+                        <input type="checkbox" name="formActive" checked> Active
                     </label>
                 </div>
             </div>
@@ -152,7 +188,82 @@
             </div>
         </div>
     </form>
+    </div>
 
+    <a href="" class="spoiler_links"><h1>Get all events</h1></a>
+    <div class="spoiler_body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit" class="btn btn-success">Get all events</button>
+                </div>
+            </div>
+
+            <div class="yourEvents"></div>
+
+        </form>
+    </div>
+
+    <a href="" class="spoiler_links"><h1>Search events</h1></a>
+    <div class="spoiler_body">
+        <form class="form-horizontal">
+
+            <!-- ключ слово -->
+            <div class="form-group">
+                <label for="keyWord" class="col-sm-1 control-label">Keyword</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="keyWord" placeholder="Enter the keyword...">
+                </div>
+            </div>
+
+            <!-- дата -->
+            <div class="form-group">
+                <label for="dateSearchEvent" class="col-sm-1 control-label">Date</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="dateSearchEvent" placeholder="Search...">
+                </div>
+            </div>
+
+            <!-- только принятые -->
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="onlyAccept"> OnlyAccept
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- какие ивенты -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Type</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="searchRadio" value="1"> only my events
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="searchRadio" value="2"> which Im invited
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="searchRadio" value="3" checked> all
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- искать -->
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit" class="btn btn-success">Get this events</button>
+                </div>
+            </div>
+
+            <div class="findEvents"></div>
+        </form>
+    </div>
 </div>
 
 <script src="js/configs.js"></script>
