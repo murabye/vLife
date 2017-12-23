@@ -116,7 +116,7 @@ inviteButton.onclick = function () {
 
     return false;       // false submit
 };
-inviteButton = document.querySelector('disInvite');
+inviteButton = document.querySelector('#disInvite');
 inviteButton.onclick = function () {
     var newElem = document.createElement('div');
     newElem.innerHTML =
@@ -226,7 +226,7 @@ submitButton[2].onclick = function () {
     var date = toIso(document.querySelector('#dateSearchEvent').value);
     var type = document.querySelectorAll('input[name="searchRadio"]');
     type = type[0].checked ? 1 : (type[1].checked ? 2 : 3);
-    var accept = document.querySelector('input[name="dateStartEnd"]').checked ? 2 : 1;
+    var accept = document.querySelector('input[name="onlyAccept"]').checked ? 2 : 1;
     query += 'keyword=' + encodeURIComponent(keyword) + '&date=' + encodeURIComponent(date) +
         '&type=' + encodeURIComponent(type) + '&acceptedOnly=' + encodeURIComponent(accept);
 
@@ -259,7 +259,7 @@ submitButton[3].onclick = function () {
             alert(xhr.statusText + ": "+ xhr.responseText);
             return;
         }
-        alert('Успех');
+        alert(xhr.statusText + ": "+ xhr.responseText);
     };
     xhr.onerror = function() {
         alert( xhr.statusText + ": "+ xhr.responseText );
@@ -278,11 +278,7 @@ submitButton[4].onclick = function () {
         + encodeURIComponent(id));
 
     xhr.onload = function() {
-        if (xhr.status != 200) {
-            alert(xhr.statusText + ": "+ xhr.responseText);
-            return;
-        }
-        alert('Успех');
+        alert(xhr.statusText + ": "+ xhr.responseText);
     };
     xhr.onerror = function() {
         alert( xhr.statusText + ": "+ xhr.responseText );
