@@ -35,159 +35,189 @@
 
 <div class="container">
 
-    <a href="" class="spoiler_links"> <h1>New event</h1></a>
+    <a href="" class="spoiler_links"> <h1>New\Edit event</h1></a>
     <div class="spoiler_body">
         <form class="form-horizontal">
-        <!-- имя -->
-        <div class="form-group">
-            <label for="formName" class="col-sm-1 control-label">Name</label>
-            <div class="col-sm-10">
-                <input type="text" maxlength="25" size="35" class="form-control" id="formName" placeholder="25 sym max">
-            </div>
-        </div>
 
-        <!-- сфера -->
-        <div class="form-group">
-            <label class="col-sm-1 control-label">Sphere</label>
-            <div class="col-sm-10">
-                <label class="radio-inline">
-                    <input type="radio" name="formSphere" id="personal" value="0" checked> personal
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="formSphere" id="work" value="1"> work
-                </label>
-            </div>
-        </div>
+            <!-- изменить\создать -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Option</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="createOrPut" value="1" checked> Create
+                    </label>
 
-        <!-- даты -->
-        <div class="form-group">
-            <label for="dateStartEnd" class="col-sm-1 control-label">Start, end</label>
-            <div class="col-sm-10">
-                <input type="text" size="50" class="form-control" id="dateStartEnd" placeholder="dates...">
-            </div>
-        </div>
-
-        <!-- повтор опции -->
-        <div class="form-group">
-            <label class="col-sm-1 control-label">Repeat</label>
-            <div class="col-sm-10">
-                <label class="radio-inline">
-                    <input type="radio" name="repRadio" value="1"> never
-                </label>
-
-                <label class="radio-inline">
-                    <input type="radio" name="repRadio" value="2"> day
-                </label>
-
-                <label class="radio-inline">
-                    <input type="radio" name="repRadio" value="3"> week
-                </label>
-
-                <label class="radio-inline">
-                    <input type="radio" name="repRadio" value="4"> fortnight
-                </label>
-
-                <label class="radio-inline">
-                    <input type="radio" name="repRadio" value="1"> month
-                </label>
-            </div>
-        </div>
-
-        <!-- повтор -->
-        <div class="form-group">
-            <label class="col-sm-1 control-label">Repeat</label>
-            <div class="col-sm-10">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="1"> monday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="2"> tuesday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="3"> wednesday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="4"> thursday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="5"> friday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="6"> saturday
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="formRepeatOpt" value="7"> sunday
-                </label>
-            </div>
-        </div>
-
-        <!-- конец повтора -->
-        <div class="form-group">
-            <label for="dateRepeatEnd" class="col-sm-1 control-label">Repeat until</label>
-            <div class="col-sm-10">
-                <input type="text" size="35" class="form-control" id="dateRepeatEnd" placeholder="Repeat until...">
-            </div>
-        </div>
-
-        <!-- карта -->
-        <div class="form-group" style="height: 500px;">
-            <label class="col-sm-1 control-label">Place</label>
-            <div class="col-sm-10" style="height: 100%;">
-
-                <input id="pac-input" class="controls" type="text"
-                        placeholder="Enter a location">
-                <div id="map"></div>
-                <div id="infowindow-content">
-                    <span id="place-name"  class="title"></span><br>
-                    Place ID <span id="place-id"></span><br>
-                    <span id="place-address"></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- описание -->
-        <div class="form-group">
-            <label for="formDescription" class="col-sm-1 control-label">Description</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="formDescription"
-                          placeholder="Description..."
-                          rows="4" cols="100"></textarea>
-            </div>
-        </div>
-
-        <!-- повторить за -->
-        <div class="form-group">
-            <label for="formName" class="col-sm-1 control-label">Reminds</label>
-            <div class="col-sm-10">
-                <input type="text" size="35" class="form-control" id="reminds" placeholder="integer">
-            </div>
-        </div>
-
-        <!-- Активно -->
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="formActive" checked> Active
+                    <label class="radio-inline">
+                        <input type="radio" name="createOrPut" value="2"> Put
                     </label>
                 </div>
             </div>
-        </div>
 
-        <!-- Пригласить, кнопка -->
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-10">
-                <button id="invite" class="btn btn-info">Invite Friend</button>
+            <!-- имя -->
+            <div class="form-group">
+                <label for="formName" class="col-sm-1 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" maxlength="25" size="35" class="form-control" id="formName" placeholder="25 sym max">
+                </div>
             </div>
-        </div>
 
-        <!-- Success -->
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-10">
-                <button type="submit" class="btn btn-success">Submit</button>
+            <!-- сфера -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Sphere</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="formSphere" id="personal" value="0" checked> personal
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="formSphere" id="work" value="1"> work
+                    </label>
+                </div>
             </div>
-        </div>
-    </form>
+
+            <!-- даты -->
+            <div class="form-group">
+                <label for="dateStartEnd" class="col-sm-1 control-label">Start, end</label>
+                <div class="col-sm-10">
+                    <input type="text" size="50" class="form-control" id="dateStartEnd" placeholder="dates...">
+                </div>
+            </div>
+
+            <!-- повтор опции -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Repeat</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="repRadio" value="1"> never
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="repRadio" value="2"> day
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="repRadio" value="3"> week
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="repRadio" value="4"> fortnight
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="repRadio" value="1"> month
+                    </label>
+                </div>
+            </div>
+
+            <!-- повтор -->
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Repeat</label>
+                <div class="col-sm-10">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="1"> monday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="2"> tuesday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="3"> wednesday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="4"> thursday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="5"> friday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="6"> saturday
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="formRepeatOpt" value="7"> sunday
+                    </label>
+                </div>
+            </div>
+
+            <!-- конец повтора -->
+            <div class="form-group">
+                <label for="dateRepeatEnd" class="col-sm-1 control-label">Repeat until</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="dateRepeatEnd" placeholder="Repeat until...">
+                </div>
+            </div>
+
+            <!-- карта -->
+            <div class="form-group" style="height: 500px;">
+                <label class="col-sm-1 control-label">Place</label>
+                <div class="col-sm-10" style="height: 100%;">
+
+                    <input id="pac-input" class="controls" type="text"
+                            placeholder="Enter a location">
+                    <div id="map"></div>
+                    <div id="infowindow-content">
+                        <span id="place-name"  class="title"></span><br>
+                        Place ID <span id="place-id"></span><br>
+                        <span id="place-address"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- описание -->
+            <div class="form-group">
+                <label for="formDescription" class="col-sm-1 control-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="formDescription"
+                              placeholder="Description..."
+                              rows="4" cols="100"></textarea>
+                </div>
+            </div>
+
+            <!-- повторить за -->
+            <div class="form-group">
+                <label for="formName" class="col-sm-1 control-label">Reminds</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="reminds" placeholder="integer">
+                </div>
+            </div>
+
+            <!-- Активно -->
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="formActive" checked> Active
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пригласить, кнопка -->
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button id="invite" class="btn btn-info">Invite Friend</button>
+                </div>
+            </div>
+
+            <div id="putOptions" class="putNonActive">
+                <div class="form-group">
+                    <label for="idPut" class="col-sm-1 control-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" size="35" class="form-control" id="idPut" placeholder="Id">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button id="disInvite" class="btn btn-info">Drop Friend</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
     </div>
 
     <a href="" class="spoiler_links"><h1>Get all events</h1></a>
@@ -264,6 +294,49 @@
             <div class="findEvents"></div>
         </form>
     </div>
+
+    <a href="" class="spoiler_links"> <h1>Get invited</h1></a>
+    <div class="spoiler_body">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="idInvited" class="col-sm-1 control-label">ID</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="idInvited" placeholder="Id">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <a href="" class="spoiler_links"> <h1>Details</h1></a>
+    <div class="spoiler_body">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="idDetails" class="col-sm-1 control-label">ID</label>
+                <div class="col-sm-10">
+                    <input type="text" size="35" class="form-control" id="idDetails" placeholder="Id">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
 <script src="js/configs.js"></script>

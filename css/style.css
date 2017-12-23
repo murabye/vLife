@@ -5805,4 +5805,7 @@ html {
   display: inline;
   margin: 5px 5px 5px 0; }
 
+.putNonActive {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,8 +1,3 @@
-//документация: http://vlife.lastshelter.net:1337/docs/
-// файл ТЕСНО связан со страницей.
-
-var id;                                 // id события
-
 // спойлеры
 $(document).ready(function(){
     $('.spoiler_links').click(function(){
@@ -99,6 +94,14 @@ function initMap() {
     });
 }
 
+var putOrCr = document.querySelectorAll('input[name="createOrPut"]');
+putOrCr[0].onclick = function () {
+    document.querySelector('#putOptions').classList.toggle('putNonActive');
+};
+putOrCr[1].onclick = function () {
+    document.querySelector('#putOptions').classList.toggle('putNonActive');
+};
+
 // invite
 var inviteButton = document.querySelector('#invite');
 inviteButton.onclick = function () {
@@ -113,21 +116,29 @@ inviteButton.onclick = function () {
 
     return false;       // false submit
 };
+inviteButton = document.querySelector('disInvite');
+inviteButton.onclick = function () {
+    var newElem = document.createElement('div');
+    newElem.innerHTML =
+        '<div class="containerDisInvite">' +
+        '<input type="text" class="form-control formInvite" placeholder="Number of user">' +
+        '<input type="text" class="form-control formInvite" placeholder="Phone">'  +
+        '<input type="text" class="form-control formInvite" placeholder="Email">' +
+        '</div>';
+    inviteButton.parentNode.appendChild(newElem);
+
+    return false;       // false submit
+};
 
 // новое событие
 var submitButton = document.querySelectorAll('.btn-success');
 submitButton[0].onclick = function () {
-    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-    var xhr = new XHR();
+    if (putOrCr[1].checked)  {
+        putEvent();
+        return false;
+    }
 
-    var query = 'http://vlife.lastshelter.net:1337/api/v1/events';
-    xhr.open('POST', query, true);
-
-    var token = localStorage.getItem('token');
-
-    xhr.setRequestHeader('vlife-access-key', vLifeAccessKey);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('auth-token', token);
+    var xhr = createXHR('POST', 'http://vlife.lastshelter.net:1337/api/v1/events');
 
     xhr.onload = function() {
         if (xhr.status != 200) {
@@ -135,13 +146,154 @@ submitButton[0].onclick = function () {
             return;
         }
         alert('Успех');
-
-        id = (JSON.parse(token)).id;
     };
     xhr.onerror = function() {
         alert( xhr.statusText + ": "+ xhr.responseText );
     };
 
+    var body = getCreatingBody();
+
+    body = JSON.stringify(body);
+    xhr.send(body);
+
+    return false;
+};
+function toIso(inputDate) {
+    return (new Date(Date.parse(inputDate))).toISOString();
+}
+
+// вставка
+function putEvent() {
+    var id = document.querySelector('#idPut').value;
+
+    var xhr = createXHR('PUT', 'http://vlife.lastshelter.net:1337/api/v1/events/' + encodeURIComponent(id));
+
+    xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+        alert('Успех');
+    };
+    xhr.onerror = function() {
+        alert( xhr.statusText + ": "+ xhr.responseText );
+    };
+
+    var body = getCreatingBody();
+    body.dropped_invites = {
+            users: [],
+            phones: [],
+            emails: []
+    };
+    var cur = document.querySelectorAll('.containerDisInvite');
+    cur.forEach(function (item) {
+        body.dropped_invites.users.push(item.childNodes[0].value);
+        body.dropped_invites.phones.push(item.childNodes[1].value);
+        body.dropped_invites.emails.push(item.childNodes[2].value);
+    });
+
+    body = JSON.stringify(body);
+    xhr.send(body);
+
+    return false;
+}
+
+// вывод всех событий
+submitButton[1].onclick = function () {
+    var xhr = createXHR('GET', 'http://vlife.lastshelter.net:1337/api/v1/events');
+
+    xhr.onload = function() {
+        if (xhr.status !== 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+
+        document.querySelector('.yourEvents').innerHTML = xhr.responseText;
+    };
+
+    xhr.onerror = function() {
+        alert( xhr.statusText + ": "+ xhr.responseText );
+    };
+
+    xhr.send();
+    return false;
+};
+
+// вывод событий по фильтрам
+submitButton[2].onclick = function () {
+    var query = 'http://vlife.lastshelter.net:1337/api/v1/events?';
+    var keyword = document.querySelector('#keyWord').value;
+    var date = toIso(document.querySelector('#dateSearchEvent').value);
+    var type = document.querySelectorAll('input[name="searchRadio"]');
+    type = type[0].checked ? 1 : (type[1].checked ? 2 : 3);
+    var accept = document.querySelector('input[name="dateStartEnd"]').checked ? 2 : 1;
+    query += 'keyword=' + encodeURIComponent(keyword) + '&date=' + encodeURIComponent(date) +
+        '&type=' + encodeURIComponent(type) + '&acceptedOnly=' + encodeURIComponent(accept);
+
+    var xhr = createXHR('GET', query);
+
+    xhr.onload = function() {
+        if (xhr.status !== 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+
+        document.querySelector('.findEvents').innerHTML = xhr.responseText;
+    };
+    xhr.onerror = function() {
+        alert( xhr.statusText + ": "+ xhr.responseText );
+    };
+
+    xhr.send();
+    return false;
+};
+
+submitButton[3].onclick = function () {
+    var id = document.querySelector('#idInvited').value;
+
+    var xhr = createXHR('GET', 'http://vlife.lastshelter.net:1337/api/v1/events/'
+        + encodeURIComponent(id) + '/invited');
+
+    xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+        alert('Успех');
+    };
+    xhr.onerror = function() {
+        alert( xhr.statusText + ": "+ xhr.responseText );
+    };
+
+    xhr.send();
+
+    return false;
+};
+
+submitButton[4].onclick = function () {
+    //idDetails
+    var id = document.querySelector('#idInvited').value;
+
+    var xhr = createXHR('GET', 'http://vlife.lastshelter.net:1337/api/v1/events/detail/'
+        + encodeURIComponent(id));
+
+    xhr.onload = function() {
+        if (xhr.status != 200) {
+            alert(xhr.statusText + ": "+ xhr.responseText);
+            return;
+        }
+        alert('Успех');
+    };
+    xhr.onerror = function() {
+        alert( xhr.statusText + ": "+ xhr.responseText );
+    };
+
+    xhr.send();
+
+    return false;
+};
+
+function getCreatingBody() {
     var body = {
         title: "",
         sphere: 0,
@@ -195,22 +347,13 @@ submitButton[0].onclick = function () {
     body.date_start = toIso(dates[0]);
     body.date_end = toIso(dates[1]);
 
-    body = JSON.stringify(body);
-    xhr.send(body);
-
-    return false;
-};
-function toIso(inputDate) {
-    return (new Date(Date.parse(inputDate))).toISOString();
+    return body;
 }
-
-// вывод всех событий
-submitButton[1].onclick = function () {
+function createXHR(type, query) {
     var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     var xhr = new XHR();
 
-    var query = 'http://vlife.lastshelter.net:1337/api/v1/events';
-    xhr.open('GET', query, true);
+    xhr.open(type, query, true);
 
     var token = localStorage.getItem('token');
 
@@ -218,58 +361,5 @@ submitButton[1].onclick = function () {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('auth-token', token);
 
-    xhr.onload = function() {
-        if (xhr.status !== 200) {
-            alert(xhr.statusText + ": "+ xhr.responseText);
-            return;
-        }
-
-        document.querySelector('.yourEvents').innerHTML = xhr.responseText;
-    };
-
-    xhr.onerror = function() {
-        alert( xhr.statusText + ": "+ xhr.responseText );
-    };
-
-    xhr.send();
-    return false;
-};
-
-// вывод событий по фильтрам
-submitButton[2].onclick = function () {
-    var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-    var xhr = new XHR();
-
-    var query = 'http://vlife.lastshelter.net:1337/api/v1/events?';
-    var keyword = document.querySelector('#keyWord').value;
-    var date = toIso(document.querySelector('#dateSearchEvent').value);
-    var type = document.querySelectorAll('input[name="searchRadio"]');
-    type = type[0].checked ? 1 : (type[1].checked ? 2 : 3);
-    var accept = document.querySelector('input[name="dateStartEnd"]').checked ? 2 : 1;
-    query += 'keyword=' + encodeURIComponent(keyword) + '&date=' + encodeURIComponent(date) +
-        '&type=' + encodeURIComponent(type) + '&acceptedOnly=' + encodeURIComponent(accept);
-
-    xhr.open('GET', query, true);
-    var token = localStorage.getItem('token');
-    xhr.setRequestHeader('vlife-access-key', vLifeAccessKey);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('auth-token', token);
-
-    xhr.onload = function() {
-        if (xhr.status !== 200) {
-            alert(xhr.statusText + ": "+ xhr.responseText);
-            return;
-        }
-
-        document.querySelector('.findEvents').innerHTML = xhr.responseText;
-    };
-    xhr.onerror = function() {
-        alert( xhr.statusText + ": "+ xhr.responseText );
-    };
-
-    xhr.send();
-    return false;
-};
-
-//
-
+    return xhr;
+}
